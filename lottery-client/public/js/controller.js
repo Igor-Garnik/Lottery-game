@@ -78,7 +78,7 @@ class Controller {
     }
 
     updateMemberHandler() {
-        this.initHandler(this.methods.post);
+        this.initHandler(this.methods.put);
     }
 
     deleteMemberHandler() {

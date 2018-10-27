@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
         res.send(member);
     });
 }).post('/', (req, res) => {
-    console.log(req.body);
     let newMember = new Member(defineMember(req.body));
     newMember.save((err) => {
         if (err) throw err;
@@ -18,22 +17,31 @@ router.get('/', (req, res) => {
 }).post('/find-one', (req, res) => {
     Member.findOne(req.body, (err, person) => {
         if (err) throw err;
-        console.log(person)
         res.send(person);
     });
-}).put('/', (req, res) => {
+})/* .put('/', (req, res) => {
     //const options = { multi: true };
     //let query = new Member(defineMember(req.body));
     Model.findOneAndUpdate(query, query, (err) => {
         if (err) throw err;
         res.send(member);
+    }); */
+
+    .put('/', (req, res) => {
+        let query = { 'name': req.body.name };
+        console.log(query);
+        req.member = new Member(req.body);
+        Member.findOneAndUpdate(query, req.member, { upsert: true }, (err, doc) => {
+            if (err) return res.send(500, { error: err });
+            return res.send("succesfully saved");
+        });
+
+    }).delete('/', function (req, res) {
+        Member.deleteOne(req.body, (err) => {
+            if (err) throw err;
+            res.send(req.body);
+        });
     });
-}).delete('/', function (req, res) {
-    Member.deleteOne(req.body, (err) => {
-        if (err) throw err;
-        res.send(req.body);
-    });
-});
 
 function defineMember(req) {
     return {
