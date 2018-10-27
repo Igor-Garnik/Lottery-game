@@ -11,6 +11,7 @@ class Controller {
         }
         this.methods = { post: 'POST', put: 'PUT', delete: 'DELETE' };
         this.errorBlocks = ['errorBlock', 'nameErrorBlock', 'surnameErrorBlock', 'emailErrorBlock', 'phoneErrorBlock'];
+        this.formHeader = { registration: 'Registration form', person: 'Personal data' };
     }
 
     initComponent() {
@@ -19,6 +20,7 @@ class Controller {
     }
 
     displayMembersList() {
+        this.view.renderBlock(this.formHeader.registration, 'regFormBlock');
         this.model.getMembersList()
             .then(data => {
                 let markup = this.model.createFormMarkup(JSON.parse(data));
@@ -64,6 +66,7 @@ class Controller {
     }
 
     choseMemberHandler(e) {
+        this.view.renderBlock(this.formHeader.person, 'regFormBlock');
         let person = {};
         let elements = document.querySelectorAll('.checkbox')
         this.view.removeChecked(elements);
@@ -98,6 +101,7 @@ class Controller {
                     this.view.activateBtn(['saveBtn']);
                     let errorData = this.model.getErrorData();
                     errorData && this.view.hideElements(formData);
+                    this.view.renderBlock(this.formHeader.registration, 'regFormBlock');
                 }).catch(error => console.log(error));
         } else {
             let errorData = this.model.getErrorData();

@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
         let query = { 'name': req.body.name };
         console.log(query);
         req.member = new Member(req.body);
-        Member.findOneAndUpdate(query, req.member, { upsert: true }, (err, doc) => {
+        Member.findOneAndUpdate(query, req.member, { upsert: false }, (err, doc) => {
             if (err) return res.send(500, { error: err });
             return res.send("succesfully saved");
         });
