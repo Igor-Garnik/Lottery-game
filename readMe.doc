@@ -1,2 +1,5 @@
-server init: nodemon;
-client init: npm start;
+﻿Welcome to lottery game. 
+To start project execute comands below:
+
+server: nodemon;
+client: npm start;
