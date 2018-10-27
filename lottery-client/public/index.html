@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>World wide lottery</h1>
+        <h2>Enroll now and become a millionaire today!!!</h2>
+        <section class="winner">
+            <div class="row">
+                <div class="left-block">The winner is:</div>
+                <div class="center" id="winner-msg"></div>
+                <button id="start-lottery-btn">New winner</button>
+            </div>
+        </section>
+        <section class="registration">
+            <h3>Registration form</h3>
+            <form>
+                <div class=" hide" id="error-msg-block"></div>
+                <div>
+                    <label for="name">Name:</label><span class="required">*</span>
+                    <input id="name-inp" type="text" name="name" placeholder="Name">
+                    <div id="name-error-msg" class="hide errorMsg"></div>
+                </div>
+                <div>
+                    <label for="surname">Surname:</label><span class="required">*</span>
+                    <input id="surname-inp" type="text" name="surname" placeholder="Surname">
+                    <div id="surname-error-msg" class="hide errorMsg"></div>
+                </div>
+                <div>
+                    <label for="email">Email:</label><span class="required">*</span>
+                    <input id="email-inp" type="text" name="email" placeholder="user@gmail.com">
+                    <div id="email-error-msg" class="hide errorMsg"></div>
+                </div>
+                <div>
+                    <label for="tel">Phone:</label>
+                    <input id="tel-inp" type="text" name="tel" placeholder="093-484-44-16">
+                    <div id="tel-error-msg" class="hide errorMsg"></div>
+                </div>
+                <div>
+                    <label for="tel">Date of birth:</label>
+                    <input id="date-inp" type="date" name="date" placeholder="10.10.1980">
+                    <div id="date-error-msg" class="hide errorMsg"></div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" id="delete-member-btn" disabled>Delete</button>
+                    <button type="button" id="update-member-btn" disabled>Update</button>
+                    <button type="button" id="save-member-btn">Save</button>
+                </div>
+
+            </form>
+        </section>
+        <section id="members">
+            <h3>Lottery members</h3>
+            <div id="table-header">
+                <div class="row">
+                    <div class="checkbox-wrapper"><input type="checkbox"></div>
+                    <div class="number">#</div>
+                    <div>Name</div>
+                    <div>Surname</div>
+                    <div>Email</div>
+                    <div>Phone</div>
+                    <div>Birthday</div>
+                </div>
+            </div>
+            <div id="render-block"></div>
+        </section>
+
+        <script src='./js/service.js'></script>
+        <script src='./js/dom-elements.js'></script>
+        <script src="./js/model.js"></script>
+        <script src="./js/view.js"></script>
+        <script src="./js/validator.js"></script>
+        <script src="./js/controller.js"></script>
+        <script src="./js/main.js"></script>
+
+
+
+
+</body>
+
+</html>
