@@ -7,7 +7,6 @@ const memberShema = new Shema({
     email: String,
     phone: String,
     birthday: String,
-    _id: String
 });
 
 const Member = mongoose.model('Member', memberShema);

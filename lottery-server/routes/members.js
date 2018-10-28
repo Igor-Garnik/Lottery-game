@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Member = require('../models/member');
-
+const ObjectId = require('mongodb').ObjectId;
 
 router.get('/', (req, res) => {
     Member.find((err, member) => {
@@ -20,14 +20,11 @@ router.get('/', (req, res) => {
         res.send(person);
     });
 }).put('/', (req, res) => {
-    let id = req.body._id;
-    let query = { _id: { $oid: id } };
-    let member = req.body;
-    member._id = { $oid: id };
-    //member._id = { $oid: id }
-    console.log(req.body);
+    let query = { _id: { $in: req.body._id } };
+    let member = defineMember(req.body)
+    console.log(member.name);
     console.log(member);
-    Member.findOneAndUpdate(query, member.name, { upsert: true }, (err, doc) => {
+    Member.findOneAndUpdate(query, member, (err, doc) => {
         if (err) return res.status(500).send({ error: err });
         return res.send('updated');
     });
