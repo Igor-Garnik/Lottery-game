@@ -17,7 +17,8 @@ class DomElements {
             telInp: document.querySelector('#tel-inp'),
             dateInp: document.querySelector('#date-inp'),
             errorBlock: document.querySelector('#error-msg-block'),
-            regFormBlock: document.querySelector('#registration-form')
+            regFormBlock: document.querySelector('#registration-form'),
+            personId: document.querySelector('.person-id')
         }
     }
 

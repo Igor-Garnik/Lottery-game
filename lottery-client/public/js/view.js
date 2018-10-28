@@ -5,11 +5,13 @@ class View {
 
     getFormData() {
         return {
+            _id: this.domElements.personId.innerText,
             name: this.domElements.nameInp.value,
             surname: this.domElements.surnameInp.value,
             email: this.domElements.emailInp.value,
             phone: this.domElements.telInp.value,
             birthday: this.domElements.dateInp.value
+
         }
     }
 
@@ -19,6 +21,7 @@ class View {
         this.domElements.emailInp.value = member.email;
         this.domElements.telInp.value = member.phone;
         this.domElements.dateInp.value = member.birthday;
+        this.domElements.personId.innerText = member._id;
     }
 
     clearForm() {

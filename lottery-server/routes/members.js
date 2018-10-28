@@ -19,29 +19,25 @@ router.get('/', (req, res) => {
         if (err) throw err;
         res.send(person);
     });
-})/* .put('/', (req, res) => {
-    //const options = { multi: true };
-    //let query = new Member(defineMember(req.body));
-    Model.findOneAndUpdate(query, query, (err) => {
-        if (err) throw err;
-        res.send(member);
-    }); */
-
-    .put('/', (req, res) => {
-        let query = { 'name': req.body.name };
-        console.log(query);
-        req.member = new Member(req.body);
-        Member.findOneAndUpdate(query, req.member, { upsert: false }, (err, doc) => {
-            if (err) return res.send(500, { error: err });
-            return res.send("succesfully saved");
-        });
-
-    }).delete('/', function (req, res) {
-        Member.deleteOne(req.body, (err) => {
-            if (err) throw err;
-            res.send(req.body);
-        });
+}).put('/', (req, res) => {
+    let id = req.body._id;
+    let query = { _id: { $oid: id } };
+    let member = req.body;
+    member._id = { $oid: id };
+    //member._id = { $oid: id }
+    console.log(req.body);
+    console.log(member);
+    Member.findOneAndUpdate(query, member.name, { upsert: true }, (err, doc) => {
+        if (err) return res.status(500).send({ error: err });
+        return res.send('updated');
     });
+
+}).delete('/', function (req, res) {
+    Member.deleteOne(req.body, (err) => {
+        if (err) throw err;
+        res.send(req.body);
+    });
+});
 
 function defineMember(req) {
     return {
@@ -49,7 +45,7 @@ function defineMember(req) {
         surname: req.surname,
         email: req.email,
         phone: req.phone,
-        birthday: req.birthday
+        birthday: req.birthday,
     }
 }
 

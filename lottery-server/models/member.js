@@ -6,7 +6,8 @@ const memberShema = new Shema({
     surname: String,
     email: String,
     phone: String,
-    birthday: String
+    birthday: String,
+    _id: String
 });
 
 const Member = mongoose.model('Member', memberShema);

@@ -92,6 +92,7 @@ class Controller {
         this.view.checkAndHideErrorBlock(this.errorBlocks);
         this.model.refreshErrorData();
         let formData = this.view.getFormData();
+        console.log(formData)
         if (!this.validator.validate(formData)) {
             this.model.postMember(formData, this.url.save, method)
                 .then(data => {
